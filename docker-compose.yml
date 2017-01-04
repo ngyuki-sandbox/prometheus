@@ -1,0 +1,34 @@
+version: '2'
+
+services:
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ~/work/prometheus:/prometheus
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  blackbox:
+    image: prom/blackbox-exporter
+    volumes:
+      - ./blackbox.yml:/etc/blackbox_exporter/config.yml
+    ports:
+      - "9115:9115"
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+
+  node-exporter-00:
+    image: prom/node-exporter
+    ports:
+      - "9100:9100"
+
+  node-exporter-01:
+    image: prom/node-exporter
+
+  node-exporter-02:
+    image: prom/node-exporter

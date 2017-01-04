@@ -1,0 +1,17 @@
+modules:
+  http_2xx:
+    prober: http
+    timeout: 5s
+    http:
+      valid_status_codes: [] # Defaults to 2xx
+      method: GET
+      headers:
+        Host: example.com
+  ssh_banner:
+    prober: tcp
+    timeout: 5s
+    tcp:
+      query_response:- expect: "^SSH-2.0-"
+  icmp:
+    prober: icmp
+    timeout: 5s
